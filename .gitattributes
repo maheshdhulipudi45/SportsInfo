@@ -1,0 +1,11 @@
+# Ignore all CSS files from language stats
+*.css linguist-detectable=false
+*.css linguist-vendored
+
+# Especially ignore CSS Modules
+*.module.css linguist-detectable=false
+*.module.css linguist-vendored
+
+# Make sure JS and JSX files are counted properly
+*.js linguist-vendored=false
+*.jsx linguist-vendored=false
