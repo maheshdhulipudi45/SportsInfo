@@ -1,0 +1,167 @@
+
+.top{
+    display: flex;
+    align-items: flex-start;
+    justify-content: start;
+    list-style: none;
+    padding: 15px 45px;
+    font-size: 0.9rem;
+
+}
+
+@keyframes fadeInTitle {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.top li{
+    padding: 7px;
+    font-size: 1rem;
+}
+.top i{
+    padding: 2px;
+    font-size: 0.7rem;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+    gap: 20px;
+    font-size: 0.8rem;
+     padding: 93px;
+      animation: fadeInTitle 1.5s ease-in-out;
+}
+.container1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 7px;
+    padding: 7px;
+
+}
+.container1 i {
+    font-size: 1.3rem;
+    padding: 11px;
+    background-color: rgb(32, 131, 32);
+    border-radius: 50%;
+
+}
+.container1 h5{
+    font-size: 1.6rem;
+
+}
+.container1 span{
+    color: green;
+}
+.container1 p{
+    font-size: 0.7rem;
+    color: beige;
+}
+.container2{
+    display: flex;
+   align-items: start;
+   justify-content: center;
+   flex-direction: column;
+   width: 390px;
+    background-color: #161616;
+   padding: 25px;
+   gap: 13px;
+   border-radius: 11px;
+   border:2px solid #161616;
+   margin-bottom: 12px;
+
+}
+
+.container2 input{
+    width: 100%;
+    padding: 5px;
+    border:2px solid;
+    border-radius: 7px;
+    background: transparent;
+    background: #110f0f;
+    color: aliceblue;
+
+}
+.container2 p{
+    font-size: 0.7rem;
+    color: beige;
+}
+button{
+    padding: 10px 20px;
+    border-radius: 7px;
+    background-color: green;
+    color: white;
+    border: none;
+    outline: none;
+}
+
+
+
+
+
+/* Tablets (768px and below) */
+@media (max-width: 768px) {
+  .container {
+    padding: 80px 40px;
+    gap: 15px;
+  }
+
+  .container1 h5 {
+    font-size: 1.4rem;
+  }
+
+  .container1 p,
+  .container2 p {
+    font-size: 0.75rem;
+  }
+
+  .container2 {
+    width: 90%;
+    padding: 20px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  .top {
+    padding: 10px 20px;
+    font-size: 0.8rem;
+  }
+
+  .container {
+    padding: 40px 20px;
+    font-size: 0.75rem;
+    gap: 15px;
+  }
+
+  .container1 h5 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .container1 p {
+    font-size: 0.65rem;
+    text-align: center;
+  }
+
+  .container2 {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+  }
+
+  .container2 input {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+}
