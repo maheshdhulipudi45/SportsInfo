@@ -6,6 +6,8 @@ import { RiGlobalLine } from "react-icons/ri";
 
 import styles from '../module.css/ThreeIcons.module.css'
 
+
+
 const Three =[
     {
        icon :<FaUsers />,
