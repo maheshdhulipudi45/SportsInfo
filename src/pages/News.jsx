@@ -1,88 +1,92 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "../module.css/News.module.css";
 
-const sampleNews = [
+const sportsData = [
   {
-    id: 1,
-    title: "Championship Final: City FC Crowned Champions",
-    date: "2025-10-01",
-    excerpt:
-      "City FC secured a thrilling 2-1 victory in the championship final after a late winner in stoppage time. Fans celebrated across the city as the club added another trophy to its cabinet.",
-    imageAlt: "Championship winning moment",
+    sport: "Cricket",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkaSLlnam-WdR6EJrr2TXRR-0yDMA9eyXVGg&s", // Action shot of cricket player batting
+    headline: "India secures thrilling win against Australia in T20 series",
+    description: "India clinched a dramatic 2-run victory in the final over, with Jasprit Bumrah's stellar performance sealing the series.",
+    time: "2h ago",
+  },
+   {
+    sport: "Cricket",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8oXIBbzkyFBxauPKCmok9eFi2mFZj1GWGpA&s",
+    headline: "Rohit Sharma's record-breaking century guides Mumbai Indians to playoffs",
+    time: "11w ago",
   },
   {
-    id: 2,
-    title: "Rising Star: Teen Forward Signs Pro Contract",
-    date: "2025-09-28",
-    excerpt:
-      "A promising young forward signed a professional deal today after an outstanding season for the youth academy. Scouts praised the player's vision and finishing ability.",
-    imageAlt: "Young forward celebrating",
+    sport: "Kabaddi",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6qqa0_U1zy9-p8xpGZb3D7Ff7XWrqzhnv_A&s", // Intense kabaddi raid moment (from Pexels, but adapted to similar style; Unsplash has limited specific kabaddi, so this is a close match)
+    headline: "Pro Kabaddi 2025: Patna Pirates lead the table once again",
+    description: "Patna Pirates showcased their dominance with a 45-30 win over Bengaluru Bulls, topping the league standings.",
+    time: "4h ago",
   },
   {
-    id: 3,
-    title: "Injury Update: Midfielder Ruled Out for 3 Weeks",
-    date: "2025-09-25",
-    excerpt:
-      "Club medical team confirmed the midfielder will miss upcoming fixtures due to a hamstring strain — rehab is ongoing and a careful return is planned.",
-    imageAlt: "Player in rehab",
+    sport: "Volleyball",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuliDVrdAOiXNoWVnN3sfY4uB8FxtG_WqovQ&s", // Beach volleyball spike in action
+    headline: "India dominates Asian Volleyball Championship semifinals",
+    description: "The Indian men's team swept Japan 3-0, advancing to the finals with exceptional teamwork and precision.",
+    time: "6h ago",
   },
+  {
+    sport: "Hockey",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVSQ96vggb7dWx7V5IcmebzDL6BVEdE_7PxQ&s", // Field hockey player dribbling
+    headline: "Hockey World Cup: India defeats Germany in tight encounter",
+    description: "India's hockey team edged out Germany 3-2 in a thrilling match, securing their spot in the quarterfinals.",
+    time: "8h ago",
+  },
+  {
+    sport: "Football",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUDLocD58JCWAJtsAx-2oLVOCzXozVAzqKfQ&s", // Soccer player kicking the ball
+    headline: "Indian Super League: Mumbai City FC wins in last-minute drama",
+    description: "A 90th-minute goal by Mumbai City FC's star striker secured a 2-1 victory against Kerala Blasters.",
+    time: "10h ago",
+  },
+  {
+    sport: "Tennis",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkI3E9Cc3XyRbldfQsXuc9ZmoKdNH7DSA4jw&s", // Tennis player serving on court
+    headline: "Sania Mirza announces new Tennis academy in Hyderabad",
+    description: "The academy aims to nurture young talent with world-class facilities and coaching programs.",
+    time: "12h ago",
+  },
+  {
+    sport: "Badminton",
+    image: "https://cdn.britannica.com/44/256944-050-8D414329/PV-Sindhu-2020-Tokyo-Olympics.jpg?w=400&h=300&c=crop", // Badminton player smashing shuttlecock
+    headline: "PV Sindhu clinches her 5th BWF Super 500 title",
+    description: "PV Sindhu defeated top seed Tai Tzu Ying in a gripping final, showcasing her resilience and skill.",
+    time: "15h ago",
+  },
+  {
+    sport: "Basketball",
+    image: "data:image/jpeg;base64,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", // Basketball player dunking
+    headline: "Indian team qualifies for FIBA Asia Cup 2025 tournament",
+    description: "India's basketball team secured a spot in the Asia Cup with a commanding win over Saudi Arabia.",
+    time: "18h ago",
+  },
+  
 ];
-
-const formatDate = (iso) => {
-  const d = new Date(iso);
-  return d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
-};
-
-const News = ({ items = sampleNews }) => {
-  const [expanded, setExpanded] = useState(null);
-
-  const toggle = (id) => setExpanded((prev) => (prev === id ? null : id));
-
+const News = () => {
   return (
-    <section className={styles.newsSection}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>Latest News</h2>
-        <p className={styles.subtitle}>Stay updated with the latest match reports, transfers and club news.</p>
-      </div>
-
-      <div className={styles.grid}>
-        {items.map((item) => (
-          <article key={item.id} className={styles.card}>
-            <div className={styles.media} role="img" aria-label={item.imageAlt}>
-              {/* Use real <img> or background-image in production */}
-              <div className={styles.imagePlaceholder}>{item.title.slice(0, 1)}</div>
-            </div>
-
-            <div className={styles.cardBody}>
-              <div className={styles.meta}>
-                <time dateTime={item.date} className={styles.date}>
-                  {formatDate(item.date)}
-                </time>
+    <div className={styles.newsSection}>
+      <h2 className={styles.mainHeading}>Latest <span>Sports News</span> </h2>
+      <div className={styles.cardContainer}>
+        {sportsData.map((item, index) => (
+          <div key={index} className={styles.newsCard}>
+            <img src={item.image} alt={item.sport} className={styles.newsImage} />
+            <div className={styles.newsContent}>
+              <div className={styles.headerRow}>
+                <span className={styles.category}>{item.sport}</span>
+                <span className={styles.time}>{item.time}</span>
               </div>
-
-              <h3 className={styles.cardTitle}>{item.title}</h3>
-
-              <p className={styles.excerpt}>
-                {expanded === item.id ? item.excerpt + " — full story continues here with more details and quotes." : item.excerpt.slice(0, 120) + (item.excerpt.length > 120 ? "…" : "")}
-              </p>
-
-              <div className={styles.actions}>
-                <button
-                  className={styles.readMore}
-                  onClick={() => toggle(item.id)}
-                  aria-expanded={expanded === item.id}
-                >
-                  {expanded === item.id ? "Show less" : "Read more"}
-                </button>
-                <button className={styles.share} onClick={() => navigator.clipboard?.writeText(window.location.href + `#news-${item.id}`)}>
-                  Share
-                </button>
-              </div>
+              <h3 className={styles.headline}>{item.headline}</h3>
+              <p className={styles.description}>{item.description}</p>
             </div>
-          </article>
+          </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 };
 
