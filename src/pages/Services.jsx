@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../module.css/AboutandServices.module.css';
+import styles from '../module.css/Aboutandservices.module.css';
 import {FaClock,FaChartLine,FaBell,FaGlobe,FaDatabase,FaMobileAlt} from 'react-icons/fa'
 // Reusable component for the service cards
 const ServiceCard = ({ icon, title, description, features }) => (
