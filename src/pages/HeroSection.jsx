@@ -1,6 +1,6 @@
 // HeroSection.jsx
 import React, { useState, useEffect } from "react";
-import styles from "../module.css/HeroSection.module.css";
+import styles from "../module.css/Herosection.module.css";
 import {
   FaUsers,
   FaBasketballBall,
