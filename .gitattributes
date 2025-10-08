@@ -9,3 +9,6 @@
 # Make sure JS and JSX files are counted properly
 *.js linguist-vendored=false
 *.jsx linguist-vendored=false
+
+
+* text=auto
