@@ -58,9 +58,9 @@ const Footer = () => {
       <div className={styles.footerBottom}>
         <p>{new Date().getFullYear()} SportsInfo. All rights reserved.</p>
         <div className={styles.bottomLinks}>
-          <a href="#">Privacy Policy</a>
+          <a href="/">Privacy Policy</a>
           <a href="#">Terms of Service</a>
-          <a href="#">Contact Us</a>
+          <a href="/contact">Contact Us</a>
         </div>
       </div>
     </footer>
